@@ -1,5 +1,3 @@
-package main;
-
 import controllers.EmergencyController;
 
 public class Main {
