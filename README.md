@@ -19,12 +19,12 @@ Manejo de excepciones
 📦Estructura del Proyecto
 La estructura de carpetas y archivos es la siguiente:
 sistemaemergencias/
+
+
+
 ├── vscode
-
 ├── bin
-
 ├── lib
-
 └── src
 
     ├── controllers
