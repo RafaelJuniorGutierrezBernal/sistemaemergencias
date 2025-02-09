@@ -1,13 +1,13 @@
+
 package controllers;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import models.Emergencia;
 
 public class ResourceManager {
-    private static ResourceManager instance; // Instancia única
-    private List<Recurso> recursos = new ArrayList<>();
+    private static ResourceManager instance; // Instancia única para el patrón Singleton
+    private List<Recurso> recursos = new ArrayList<>(); // Lista de recursos disponibles
 
     // Constructor privado para evitar instanciación externa
     private ResourceManager() {
@@ -24,10 +24,11 @@ public class ResourceManager {
         return instance;
     }
 
+    // Asigna un recurso disponible según el tipo de emergencia
     public Recurso asignarRecurso(Emergencia emergencia) {
         for (Recurso recurso : recursos) {
             if (recurso.isDisponible() && recurso.getTipo().equals(emergencia.getTipoRecursoNecesario())) {
-                recurso.setDisponible(false);
+                recurso.setDisponible(false); // Marca el recurso como no disponible
                 System.out.println("Recurso asignado: " + recurso.getTipo());
                 return recurso;
             }
@@ -36,6 +37,7 @@ public class ResourceManager {
         return null;
     }
 
+    // Libera un recurso previamente utilizado
     public void liberarRecurso(Recurso recurso) {
         if (recurso != null) {
             recurso.setDisponible(true);
@@ -43,6 +45,7 @@ public class ResourceManager {
         }
     }
 
+    // Muestra la lista de recursos disponibles
     public void mostrarRecursos() {
         recursos.forEach(System.out::println);
     }

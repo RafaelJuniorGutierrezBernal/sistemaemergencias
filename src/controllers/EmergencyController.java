@@ -90,18 +90,12 @@ public abstract class EmergencyController {
     private void atenderEmergencia() {
         System.out.println("\n--- Atender Emergencia ---");
     
-        // Obtener una emergencia pendiente
-        Emergencia emergenciaPendiente = obtenerEmergenciaPendiente(); 
+        try {
+            Emergencia emergenciaPendiente = obtenerEmergenciaPendiente();
     
-        if (emergenciaPendiente != null) {
-            System.out.println("Emergencia a atender: " + emergenciaPendiente);
-    
-            // Verificar el tipo de emergencia y asignar recursos
             if (emergenciaPendiente instanceof Incendio) {
-                Incendio incendio = (Incendio) emergenciaPendiente;
-                // Lógica para atender un incendio
                 System.out.println("Atendiendo incendio...");
-                Recurso recursoAsignado = resourceManager.asignarRecurso(incendio);
+                Recurso recursoAsignado = resourceManager.asignarRecurso(emergenciaPendiente);
                 if (recursoAsignado != null) {
                     estadisticas.registrarEmergenciaAtendida();
                     System.out.println("Recurso asignado: " + recursoAsignado.getTipo());
@@ -109,10 +103,8 @@ public abstract class EmergencyController {
                     System.out.println("No hay recursos disponibles para atender el incendio.");
                 }
             } else if (emergenciaPendiente instanceof Robo) {
-                Robo robo = (Robo) emergenciaPendiente;
-                // Lógica para atender un robo
                 System.out.println("Atendiendo robo...");
-                Recurso recursoAsignado = resourceManager.asignarRecurso(robo);
+                Recurso recursoAsignado = resourceManager.asignarRecurso(emergenciaPendiente);
                 if (recursoAsignado != null) {
                     estadisticas.registrarEmergenciaAtendida();
                     System.out.println("Recurso asignado: " + recursoAsignado.getTipo());
@@ -120,10 +112,8 @@ public abstract class EmergencyController {
                     System.out.println("No hay recursos disponibles para atender el robo.");
                 }
             } else if (emergenciaPendiente instanceof AccidenteVehicular) {
-                AccidenteVehicular accidente = (AccidenteVehicular) emergenciaPendiente;
-                // Lógica para atender un accidente vehicular
                 System.out.println("Atendiendo accidente vehicular...");
-                Recurso recursoAsignado = resourceManager.asignarRecurso(accidente);
+                Recurso recursoAsignado = resourceManager.asignarRecurso(emergenciaPendiente);
                 if (recursoAsignado != null) {
                     estadisticas.registrarEmergenciaAtendida();
                     System.out.println("Recurso asignado: " + recursoAsignado.getTipo());
@@ -133,10 +123,12 @@ public abstract class EmergencyController {
             } else {
                 System.out.println("Tipo de emergencia no reconocido.");
             }
-        } else {
+    
+        } catch (IllegalStateException e) {
             System.out.println("No hay emergencias pendientes para atender.");
         }
     }
+    
 
     private Emergencia obtenerEmergenciaPendiente() {
         if (!emergenciasPendientes.isEmpty()) {

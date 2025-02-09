@@ -13,4 +13,3 @@ public class Bomberos implements ServicioEmergencia {
     }
 }
 
-// Implementaciones similares para Bomberos y Policia..
