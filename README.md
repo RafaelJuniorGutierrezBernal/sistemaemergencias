@@ -19,30 +19,54 @@ Manejo de excepciones
 📦Estructura del Proyecto
 La estructura de carpetas y archivos es la siguiente:
 sistemaemergencias/
+
+
+
 ├── vscode
 ├── bin
 ├── lib
 └── src
+
     ├── controllers
+    
     │   ├── AmbulanciaRecurso.java
+    
     │   ├── BomberosRecurso.java
+    
     │   ├── EmergencyController.java
+    
     │   ├── Estadisticas.java
+    
     │   ├── PoliciaRecurso.java
+    
     │   ├── Recurso.java
+    
     │   └── ResourceManager.java
+    
     ├── models
+    
     │   ├── AccidenteVehicular.java
+    
     │   ├── Emergencia.java
+    
     │   ├── Incendio.java
+    
     │   └── Robo.java
+    
     ├── services
+    
     │   ├── Ambulancia.java
+    
     │   ├── Bomberos.java
+    
     │   ├── Policia.java
+    
     │   └── ServicioEmergencia.java
+    
     └── utils
+    
     |    └── EmergencyFactory.java
+    
     |
     └── Main.java
 
